@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <h2>{{ username }}'s History</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Symbol</th>
+        <th>Price</th>
+        <th>Shares</th>
+        <th>Datetime</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows2 %}
+        <tr>
+          {% if row.shares < 0 %}
+            <td style="color:Red"><b>Sold</b></td>
+            {% set shares = -(row.shares) %}
+          {% else %}
+            <td style="color:Green"><b>Bought</b></td>
+            {% set shares = row.shares %}
+          {% endif %}
+          <td>{{ row.symbol }}</td>
+          <td>{{ usd(row.price) }}</td>
+          <td>{{ shares }}</td>
+          <td>{{ row.transaction_time }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

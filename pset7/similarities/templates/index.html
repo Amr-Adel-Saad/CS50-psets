@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="col">
+        <form action="/compare" enctype="multipart/form-data" method="post">
+
+            <!-- TODO -->
+            File1<br>
+            <input name="file1" style="display:block" type="file"></input><br>
+
+            File2<br>
+            <input name="file2" style="display:block" type="file"></input><br>
+
+            <input name="algorithm" style="display:block" type="radio" value="lines">lines</input>
+            <input name="algorithm" style="display:block" type="radio" value="sentences">sentences</input>
+            <input name="algorithm" style="display:block" type="radio" value="substrings">substrings</input><br><br>
+            Length<br>
+            <input name="length" style="display:block" type="number"></input><br>
+            <button style="display:block" type="submit">Compare</button>
+
+        </form>
+    </div>
+
+{% endblock %}

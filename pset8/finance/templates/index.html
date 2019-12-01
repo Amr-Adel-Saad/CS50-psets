@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <h2>{{ username }}'s Portfolio</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Shares</th>
+        <th>Current Price</th>
+        <th>Holding Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% set holding_total = 0 %}
+      {% for stock in stocks %}
+        <tr>
+          <td>{{ stock.name }}</td>
+          <td>{{ stock.shares }}</td>
+          <td>{{ usd(stock.price) }}</td>
+          <td>{{ usd(stock.shares * stock.price) }}</td>
+        </tr>
+        {% set holding_total = holding_total + stock.shares * stock.price %}
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="container" style="margin-top:70px">
+  <h2>Summary</h2>
+  <ul class="list-group">
+    <li class="list-group-item">Current Cash Balance: <b>{{ usd(cash) }}</b>
+    <a href="/cash" style="display: block;">Add cash</a>
+    </li>
+    <li class="list-group-item">Grand Total: <b>{{ usd(cash + holding_total) }}</b></li>
+  </ul>
+  </div>
+</div>
+{% endblock %}

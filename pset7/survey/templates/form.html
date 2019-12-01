@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">Form</h1>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post" class="needs-validation" novalidate>
+
+        <!-- TODO -->
+        <div class="form-group">
+            <label for="name"><b>Name</b></label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" required>
+            <div class="invalid-feedback">Please enter your name.</div>
+        </div>
+        <div class="form-group">
+            <label for="age"><b>Age</b></label>
+            <input type="number" class="form-control" name="age" id="age" placeholder="Enter your age" required>
+            <div class="invalid-feedback">Please enter your age.</div>
+        </div>
+        <b>Gender</b>
+        <div class="form-check">
+            <div>
+                <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div>
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+            <label class="form-check-label" for="female">Female</label>
+            </div>
+            <div class="invalid-feedback">Please select your gender.</div>
+        </div>
+        <br>
+        <b>Hobby</b>
+        <div class="form-group">
+            <select class="custom-select" required name="hobby">
+                <option value="">Select your hobby</option>
+                <option value="reading">Reading</option>
+                <option value="writing">Writing</option>
+                <option value="drawing">Drawing</option>
+                <option value="sports">Sports</option>
+                <option value="video gaming">Video Gaming</option>
+                <option value="other">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select a hobby.</div>
+        </div>
+        <br>
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+
+    <script>
+
+        /* TODO */
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+    </script>
+
+{% endblock %}
